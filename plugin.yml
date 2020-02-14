@@ -1,0 +1,31 @@
+main: me.alexisevelyn.paperwild.Main
+name: PaperWild
+version: 1.0
+api-version: 1.15
+author: Alexis Evelyn
+description: An Asynchronous Wild Plugin
+
+depend: []
+softdepend: []
+
+dummy: https://www.spigotmc.org/wiki/plugin-yml/
+
+commands:
+    wild:
+      description: Warp to a random place
+      usage: /wild
+      permission: paperwild.wild
+      default: false
+      permission-message: You don't have the paperwild.wild permission.
+    lagme:
+      description: Attempt to lag the server
+      usage: /lagme
+      permission: paperwild.lagme
+      default: false
+      permission-message: You don't have the paperwild.lagme permission.
+    loadedchunks:
+      description: List loaded chunks
+      usage: /loadedchunks
+      permission: paperwild.loadedchunks
+      default: false
+      permission-message: You don't have the paperwild.loadedchunks permission.
