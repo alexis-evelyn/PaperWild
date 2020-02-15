@@ -55,6 +55,7 @@ public class Commands implements CommandExecutor {
 		} else if(command.getName().equalsIgnoreCase("loadedchunks")) {			
 			for(Chunk chunk : ((Player) sender).getWorld().getLoadedChunks()) {
 				sender.sendMessage(ChatColor.GOLD + "Loaded Chunk at (" + chunk.getX() + ", " + chunk.getZ() + ")");
+				return true;
 			}
 		}
 		

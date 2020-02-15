@@ -37,6 +37,7 @@ public class ProcessChunk {
 				
 				block = snap.getBlockType(x1, highest, z1);
 				
+				// Add tall grass?
 				if(block == Material.LAVA) {
 					unsafe = true;
 					continue;
@@ -57,12 +58,14 @@ public class ProcessChunk {
 		}
 		
 		if(unsafe) {
+			plugin.getLogger().info(ChatColor.RED + "Couldn't Find A Safe Spot to Teleport!!!");
 			player.sendMessage(ChatColor.RED + "Couldn't Find A Safe Spot to Teleport!!!");
 			return;
 		}
 		
 		Location loc = new Location(player.getWorld(), x + (snap.getX() * 16), highest + 1, z + (snap.getZ() * 16));
 		
+		plugin.getLogger().info(ChatColor.GOLD + "Teleporting " + player.getName() + " to (" + (x + (snap.getX() * 16)) + ", " + (highest + 1) + ", " + (z + (snap.getZ() * 16)) + ")!!!");
 		player.sendMessage(ChatColor.GOLD + "Teleporting to (" + (x + (snap.getX() * 16)) + ", " + (highest + 1) + ", " + (z + (snap.getZ() * 16)) + ")!!!");
 		player.teleportAsync(loc, TeleportCause.PLUGIN);
 		
@@ -81,9 +84,9 @@ public class ProcessChunk {
 			
 			//plugin.getLogger().info("Block Y: " + y + " | Is Air: " + (block == Material.AIR));
 			
-			if(block != Material.AIR) { // Add Tallgrass?
-				plugin.getLogger().info("Block Y: " + y + " | Is Air: " + (block == Material.AIR));
-				plugin.getLogger().info("Block Y: " + y + " | Block ID: " + block.toString());
+			if(block != Material.AIR) {
+//				plugin.getLogger().info("Block Y: " + y + " | Is Air: " + (block == Material.AIR));
+//				plugin.getLogger().info("Block Y: " + y + " | Block ID: " + block.toString());
 				
 				return y;
 			}
