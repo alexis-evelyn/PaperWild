@@ -10,23 +10,26 @@ import org.bukkit.Chunk;
 import org.bukkit.ChunkSnapshot;
 import org.bukkit.ChatColor;
 
+// Java Imports
 import java.util.Random;
+import java.util.function.Consumer;
 
 // https://papermc.io/javadocs/paper/1.15/org/bukkit/Chunk.html
 // https://papermc.io/javadocs/paper/1.15/org/bukkit/ChunkSnapshot.html
 
 public class Commands implements CommandExecutor {
-	private Plugin plugin = Main.getPlugin(Main.class);
+	private ProcessChunk processChunk = new ProcessChunk();
 	Random rand = new Random();
 	
 	public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
-		
 		if(command.getName().equalsIgnoreCase("wild")) {
 			if (sender instanceof Player) {
 				boolean generateChunk = true;
-				sender.sendMessage(ChatColor.GOLD + "Warping!!!");
+				sender.sendMessage(ChatColor.GOLD + "Looking for Safe Spot to Teleport!!!");
 				
-				((Player) sender).getWorld().getChunkAtAsync(rand.nextInt(100), rand.nextInt(100), generateChunk);
+				Consumer<Chunk> chunk = a -> processChunk.process((Player) sender, a);
+				
+				((Player) sender).getWorld().getChunkAtAsync(rand.nextInt(100), rand.nextInt(100), generateChunk, chunk);
 			} else {
 				sender.sendMessage(ChatColor.RED + "" + ChatColor.BOLD + "Only Players Can Run This Command!!!");
 				return true;
@@ -38,8 +41,10 @@ public class Commands implements CommandExecutor {
 				boolean generateChunk = true;
 				sender.sendMessage(ChatColor.RED + "" + ChatColor.BOLD + "Attempting to Lag Server!!!");
 				
+				Consumer<Chunk> chunk = a -> processChunk.process((Player) sender, a);
+				
 				for(int x = 0; x < 100; x++) {
-					((Player) sender).getWorld().getChunkAtAsync(rand.nextInt(100), rand.nextInt(100), generateChunk);
+					((Player) sender).getWorld().getChunkAtAsync(rand.nextInt(100), rand.nextInt(100), generateChunk, chunk);
 				}
 			} else {
 				sender.sendMessage(ChatColor.RED + "" + ChatColor.BOLD + "Only Players Can Run This Command!!!");

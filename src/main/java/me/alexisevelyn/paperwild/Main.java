@@ -14,7 +14,7 @@ import org.bukkit.plugin.java.JavaPlugin;
 import me.alexisevelyn.fourtytwo.Verbosity;
 
 public class Main extends JavaPlugin implements Listener {
-	private boolean debug = true;
+	private boolean debug = false;
 
 	// Getters and Setters
 
