@@ -46,6 +46,8 @@ public class Commands implements CommandExecutor {
 				for(int x = 0; x < 100; x++) {
 					((Player) sender).getWorld().getChunkAtAsync(rand.nextInt(100), rand.nextInt(100), generateChunk, chunk);
 				}
+				
+				sender.sendMessage(ChatColor.RED + "" + ChatColor.BOLD + "Finished Loading 100 Chunks!!!");
 			} else {
 				sender.sendMessage(ChatColor.RED + "" + ChatColor.BOLD + "Only Players Can Run This Command!!!");
 				return true;
@@ -55,8 +57,10 @@ public class Commands implements CommandExecutor {
 		} else if(command.getName().equalsIgnoreCase("loadedchunks")) {			
 			for(Chunk chunk : ((Player) sender).getWorld().getLoadedChunks()) {
 				sender.sendMessage(ChatColor.GOLD + "Loaded Chunk at (" + chunk.getX() + ", " + chunk.getZ() + ")");
-				return true;
 			}
+			
+			sender.sendMessage(ChatColor.GOLD + "Finished Listing Loaded Chunks!!!");
+			return true;
 		}
 		
 		return false;
