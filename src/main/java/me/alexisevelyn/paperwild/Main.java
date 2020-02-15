@@ -1,7 +1,7 @@
 package me.alexisevelyn.paperwild;
 
+//Bukkit Imports
 import org.bukkit.Bukkit;
-// Bukkit Imports
 import org.bukkit.ChatColor;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
@@ -9,6 +9,9 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.world.ChunkLoadEvent;
 import org.bukkit.event.world.ChunkUnloadEvent;
 import org.bukkit.plugin.java.JavaPlugin;
+
+// Utility Libraries
+import me.alexisevelyn.fourtytwo.Verbosity;
 
 public class Main extends JavaPlugin implements Listener {
 	private boolean debug = true;

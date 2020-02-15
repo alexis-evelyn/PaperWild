@@ -1,5 +1,6 @@
 package me.alexisevelyn.paperwild;
 
+// Bukkit Imports
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
@@ -7,10 +8,9 @@ import org.bukkit.entity.Player;
 import org.bukkit.plugin.Plugin;
 import org.bukkit.Chunk;
 import org.bukkit.ChunkSnapshot;
+import org.bukkit.ChatColor;
 
 import java.util.Random;
-
-import org.bukkit.ChatColor;
 
 // https://papermc.io/javadocs/paper/1.15/org/bukkit/Chunk.html
 // https://papermc.io/javadocs/paper/1.15/org/bukkit/ChunkSnapshot.html
@@ -47,7 +47,7 @@ public class Commands implements CommandExecutor {
 			}
 			
 			return true;
-		} else if(command.getName().equalsIgnoreCase("loadedchunks")) {
+		} else if(command.getName().equalsIgnoreCase("loadedchunks")) {			
 			for(Chunk chunk : ((Player) sender).getWorld().getLoadedChunks()) {
 				sender.sendMessage(ChatColor.GOLD + "Loaded Chunk at (" + chunk.getX() + ", " + chunk.getZ() + ")");
 			}

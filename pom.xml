@@ -29,12 +29,8 @@
 			<url>https://papermc.io/repo/repository/maven-public/</url>
 		</repository>
 		<repository>
-			<id>placeholderapi</id>
-			<url>http://repo.extendedclip.com/content/repositories/placeholderapi/</url>
-		</repository>
-		<repository>
-			<id>dmulloy2-repo</id>
-			<url>https://repo.dmulloy2.net/nexus/repository/public/</url>
+			<id>42</id>
+			<url>https://github.com/alexis-evelyn/maven-repo/raw/repository/</url>
 		</repository>
 	</repositories>
 
@@ -46,15 +42,10 @@
 			<scope>provided</scope>
 		</dependency>
 		<dependency>
-			<groupId>me.clip</groupId>
-			<artifactId>placeholderapi</artifactId>
-			<version>2.10.4</version>
-			<scope>provided</scope>
-		</dependency>
-		<dependency>
-			<groupId>com.comphenix.protocol</groupId>
-			<artifactId>ProtocolLib</artifactId>
-			<version>4.5.0</version>
+		  <groupId>me.alexisevelyn</groupId>
+		  <artifactId>42</artifactId>
+		  <version>0.0.1-SNAPSHOT</version>
+		  <scope>compile</scope>
 		</dependency>
 	</dependencies>
 </project>
