@@ -6,6 +6,7 @@ import org.bukkit.Chunk;
 import org.bukkit.ChunkSnapshot;
 import org.bukkit.Location;
 import org.bukkit.Material;
+import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.entity.Player;
 import org.bukkit.event.player.PlayerTeleportEvent.TeleportCause;
 import org.bukkit.plugin.Plugin;
@@ -14,6 +15,7 @@ import org.bukkit.potion.PotionEffectType;
 
 public class ProcessChunk {
 	private Plugin plugin = Main.getPlugin(Main.class);
+	FileConfiguration config = plugin.getConfig();
 	
 	public void process(Player player, Chunk chunk) {
 		int x = 0, z = 0;
@@ -77,18 +79,34 @@ public class ProcessChunk {
 	}
 	
 	public int getHighestBlockYAt(int x, int z, ChunkSnapshot snap) {
-		Material block;
+		Material block, blockAbove, blockAboveTwo;
+		boolean detectNether = config.getBoolean("debug.detectNether", true);
 		
-		for(int y = 255; y > 0; y--) {
+		for(int y = 253; y > 0; y--) {
 			block = snap.getBlockType(x, y, z);
+			blockAbove = snap.getBlockType(x, y+1, z);
+			blockAboveTwo = snap.getBlockType(x, y+2, z);
 			
 			//plugin.getLogger().info("Block Y: " + y + " | Is Air: " + (block == Material.AIR));
 			
-			if(block != Material.AIR) {
-//				plugin.getLogger().info("Block Y: " + y + " | Is Air: " + (block == Material.AIR));
-//				plugin.getLogger().info("Block Y: " + y + " | Block ID: " + block.toString());
-				
-				return y;
+			// TODO: Get Safe Nether Location - https://www.spigotmc.org/threads/nether-random-location.398899/#post-3572238
+			// "You'd need a for loop going downwards in the y direction, you're looking then for 2 blocks air with 1 block something solid below." - md_5
+			
+			if(detectNether) {
+				if((block != Material.BEDROCK) && (blockAbove == Material.AIR) && (blockAboveTwo == Material.AIR)) {
+					plugin.getLogger().info("Block Y: " + y + " | Block ID: " + block.toString());
+					plugin.getLogger().info("Block Above + 1 - Y: " + (y+1) + " | Block ID: " + blockAbove.toString());
+					plugin.getLogger().info("Block Above + 2 - Y: " + (y+2) + " | Block ID: " + blockAboveTwo.toString());
+					
+					return y;
+				}
+			} else {
+				if(block != Material.AIR) {
+//					plugin.getLogger().info("Block Y: " + y + " | Is Air: " + (block == Material.AIR));
+//					plugin.getLogger().info("Block Y: " + y + " | Block ID: " + block.toString());
+					
+					return y;
+				}
 			}
 		}
 		

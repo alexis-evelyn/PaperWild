@@ -14,18 +14,24 @@ commands:
     wild:
       description: Warp to a random place
       usage: /wild
-      permission: paperwild.wild
+      permission: paperwild.command.wild
       default: false
-      permission-message: You don't have the paperwild.wild permission.
+      permission-message: You don't have the paperwild.command.wild permission.
     lagme:
       description: Attempt to lag the server
       usage: /lagme
-      permission: paperwild.lagme
+      permission: paperwild.admin.command.lagme
       default: false
-      permission-message: You don't have the paperwild.lagme permission.
+      permission-message: You don't have the paperwild.admin.command.lagme permission.
     loadedchunks:
       description: List loaded chunks
       usage: /loadedchunks
-      permission: paperwild.loadedchunks
+      permission: paperwild.admin.command.loadedchunks
       default: false
-      permission-message: You don't have the paperwild.loadedchunks permission.
+      permission-message: You don't have the paperwild.admin.command.loadedchunks permission.
+    reload:
+      description: Reload Config
+      usage: /reload
+      permission: paperwild.admin.command.reload
+      default: false
+      permission-message: You don't have the paperwild.admin.command.reload permission.

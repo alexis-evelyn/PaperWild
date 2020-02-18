@@ -13,7 +13,7 @@ import org.bukkit.plugin.java.JavaPlugin;
 // Utility Libraries
 import me.alexisevelyn.fourtytwo.Verbosity;
 
-public class Main extends JavaPlugin implements Listener {
+public class Main extends JavaPlugin implements Listener {	
 	private boolean debug = false;
 
 	// Getters and Setters
@@ -40,6 +40,11 @@ public class Main extends JavaPlugin implements Listener {
     public void onEnable() {
 		// TODO: Hook Into GriefPrevention and Worldguard
 		// ...
+		Settings.getConfig().addDefault("worldguard_supported", false);
+		Settings.getConfig().addDefault("griefprevention_supported", false);
+		
+		Settings.getConfig().options().copyDefaults(true);
+        saveConfig();
 		
 		// Register Bukkit Listeners (For Event Handlers)
 		Bukkit.getPluginManager().registerEvents(this, this);
@@ -48,6 +53,7 @@ public class Main extends JavaPlugin implements Listener {
 		this.getCommand("wild").setExecutor(new Commands());
 		this.getCommand("lagme").setExecutor(new Commands());
 		this.getCommand("loadedchunks").setExecutor(new Commands());
+		this.getCommand("reload").setExecutor(new Commands());
 
 		// Announce Successful Start
 		getLogger().info("Paper Wild has successfully started!!!");

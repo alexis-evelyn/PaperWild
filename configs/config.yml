@@ -1,0 +1,27 @@
+# These Coordinates Are Measured In Chunks - That Will Change In The Future
+worlds:
+  world:
+    minX: -1000
+    minZ: -1000
+    maxX: 1000
+    maxZ: 1000
+  world_nether:
+    minX: -120
+    minZ: -120
+    maxX: 120
+    maxZ: 120
+  world_the_end:
+    minX: -1000
+    minZ: -1000
+    maxX: 1000
+    maxZ: 1000
+
+# Debug Options
+debug:
+  # Detect Nether is Currently Broken - Do Not Use
+  detectNether: false
+  lagme:
+    loopAmount: 100
+
+# Config Version - Don't Touch Unless You Know What You Are Doing!!!
+version: 0
