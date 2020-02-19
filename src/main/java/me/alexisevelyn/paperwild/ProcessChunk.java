@@ -93,7 +93,7 @@ public class ProcessChunk {
 			// "You'd need a for loop going downwards in the y direction, you're looking then for 2 blocks air with 1 block something solid below." - md_5
 			
 			if(detectNether) {
-				if((block != Material.BEDROCK) && (blockAbove == Material.AIR) && (blockAboveTwo == Material.AIR)) {
+				if((block != Material.BEDROCK) && (block != Material.AIR) && (blockAbove == Material.AIR) && (blockAboveTwo == Material.AIR)) {
 					plugin.getLogger().info("Block Y: " + y + " | Block ID: " + block.toString());
 					plugin.getLogger().info("Block Above + 1 - Y: " + (y+1) + " | Block ID: " + blockAbove.toString());
 					plugin.getLogger().info("Block Above + 2 - Y: " + (y+2) + " | Block ID: " + blockAboveTwo.toString());
