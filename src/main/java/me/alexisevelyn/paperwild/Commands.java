@@ -15,11 +15,25 @@ import me.alexisevelyn.fourtytwo.Math;
 // https://papermc.io/javadocs/paper/1.15/org/bukkit/Chunk.html
 // https://papermc.io/javadocs/paper/1.15/org/bukkit/ChunkSnapshot.html
 
+/** Commands From Plugin
+ * @author Alexis Evelyn
+ * @author alexisevelyn.me
+ * @version 0.0.1-Snapshot
+ * @since 0.0.1-Snapshot
+*/
 public class Commands implements CommandExecutor {
+	/** Process Chunk Class For Processing The Loaded Chunk */
 	private ProcessChunk processChunk = new ProcessChunk();
 	
+	/** Wether or Not To Generate Chunk When Looking For Safe Place to Teleport Player */
 	boolean generateChunk = true;
 	
+	/** Checks For Specific Command and Executes It
+	 * @param sender The sender's object (CommandSender)
+	 * @param command The command to run
+	 * @param label TODO: Fill In
+	 * @param args Array of arguments for the command
+	*/
 	public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
 		if(command.getName().equalsIgnoreCase("wild")) {
 			if (sender instanceof Player) {
@@ -71,7 +85,10 @@ public class Commands implements CommandExecutor {
 		return false;
 	}
 	
-	private boolean warp(Player player) {
+	/** Warp Player to Random Location in World According To Limits Set By Config
+	 * @param player Player's object
+	*/
+	private void warp(Player player) {
 		Consumer<Chunk> chunk = a -> processChunk.process(player, a);
 		
 		String world = player.getWorld().getName();
@@ -80,7 +97,7 @@ public class Commands implements CommandExecutor {
 			// Make Read From Default World Config/Nether Config
 			player.getWorld().getChunkAtAsync(Math.getRandomNumberInRange(-1000, 1000), Math.getRandomNumberInRange(-1000, 1000), generateChunk, chunk);
 			
-			return true;
+			return;
 		}
 		
 		int minX = Settings.getConfig().getInt("worlds." + world + ".minX");
@@ -91,7 +108,7 @@ public class Commands implements CommandExecutor {
 		
 		player.getWorld().getChunkAtAsync(Math.getRandomNumberInRange(minX, maxX), Math.getRandomNumberInRange(minZ, maxZ), generateChunk, chunk);
 		
-		return true;
+		return;
 		
 	}
 }

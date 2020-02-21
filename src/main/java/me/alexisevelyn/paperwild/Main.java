@@ -13,11 +13,19 @@ import org.bukkit.plugin.java.JavaPlugin;
 // Utility Libraries
 import me.alexisevelyn.fourtytwo.debug.*;
 
-public class Main extends JavaPlugin implements Listener {	
+/** Main Class
+ * @author Alexis Evelyn
+ * @author alexisevelyn.me
+ * @version 0.0.1-Snapshot
+ * @since 0.0.1-Snapshot
+*/
+public class Main extends JavaPlugin implements Listener {
+	/** Instance of 42 Library's Debug Class - Used For Verbosity Based Logging */
 	Debug debug = new Debug();
 
 	// Event Listeners
 
+	/** Called When Enabling Plugin */
 	@Override
     public void onEnable() {
 		// TODO: Hook Into GriefPrevention and Worldguard
@@ -48,11 +56,16 @@ public class Main extends JavaPlugin implements Listener {
 		getLogger().info("Paper Wild has successfully started!!!");
 	}
 
+	/** Called When Disabling Plugin */
 	@Override
     public void onDisable() {
 		getLogger().info("Thank you for using Paper Wild!!!");
 	}
 
+	/** ChunkLoadEvent Handler - Currently Unused Except For Debug
+	 * 
+	 * @param event ChunkLoadEvent
+	 */
 	@EventHandler(priority = EventPriority.LOWEST, ignoreCancelled = false)
 	public void onChunkLoad(ChunkLoadEvent event) {		
 		if(debug.isVerboseEnough(Verbosity.superverbose)) {
@@ -63,6 +76,10 @@ public class Main extends JavaPlugin implements Listener {
 		}
 	}
 	
+	/** ChunkUnloadEvent Handler - Currently Unused Except For Debug
+	 * 
+	 * @param event ChunkUnloadEvent
+	 */
 	@EventHandler(priority = EventPriority.LOWEST, ignoreCancelled = false)
 	public void onChunkUnload(ChunkUnloadEvent event) {
 		if(debug.isVerboseEnough(Verbosity.superverbose)) {

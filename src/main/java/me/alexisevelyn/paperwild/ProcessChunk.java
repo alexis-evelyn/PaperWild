@@ -13,10 +13,23 @@ import org.bukkit.plugin.Plugin;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
 
+/** Chunk Processing Class
+ * @author Alexis Evelyn
+ * @author alexisevelyn.me
+ * @version 0.0.1-Snapshot
+ * @since 0.0.1-Snapshot
+*/
 public class ProcessChunk {
+	/** Instance of Main Class */
 	private Plugin plugin = Main.getPlugin(Main.class);
+	
+	/** Instance of Config - Cannot Be Reloaded in Current State */
 	FileConfiguration config = plugin.getConfig();
 	
+	/** Process Chunk and Teleport Player If Safe Place Found
+	 * @param player Player object
+	 * @param chunk Chunk object
+	*/
 	public void process(Player player, Chunk chunk) {
 		int x = 0, z = 0;
 		
@@ -78,6 +91,12 @@ public class ProcessChunk {
 //		chunk.getBlock(0, chunk, 0)
 	}
 	
+	/** Find Safe Spot to Teleport Player to
+	 * @param x X Coordinate of Block
+	 * @param z Z Coordinate of Block
+	 * @param snap ChunkSnapshot to investigate
+	 * @return Y Coordinate of Block or -1 if failed
+	*/
 	public int getHighestBlockYAt(int x, int z, ChunkSnapshot snap) {
 		Material block, blockAbove, blockAboveTwo;
 		boolean detectNether = config.getBoolean("debug.detectNether", true);
