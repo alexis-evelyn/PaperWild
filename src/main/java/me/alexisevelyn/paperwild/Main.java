@@ -11,28 +11,10 @@ import org.bukkit.event.world.ChunkUnloadEvent;
 import org.bukkit.plugin.java.JavaPlugin;
 
 // Utility Libraries
-import me.alexisevelyn.fourtytwo.Verbosity;
+import me.alexisevelyn.fourtytwo.debug.*;
 
 public class Main extends JavaPlugin implements Listener {	
-	private boolean debug = false;
-
-	// Getters and Setters
-
-	public boolean isDebug() {
-		return this.debug;
-	}
-	
-	public boolean isVerboseEnough(Verbosity superverbose) {
-		// TODO: Have functions called this with a requested verbosity and 
-		// return true if verbosity is that value or higher
-		
-		
-		return isDebug();
-	}
-
-	public void setDebug(boolean debug) {
-		this.debug = debug;
-	}
+	Debug debug = new Debug();
 
 	// Event Listeners
 
@@ -43,8 +25,15 @@ public class Main extends JavaPlugin implements Listener {
 		Settings.getConfig().addDefault("worldguard_supported", false);
 		Settings.getConfig().addDefault("griefprevention_supported", false);
 		
+		Settings.getConfig().addDefault("debug.verbosity", debug.getVerbosity().getValue());
+		
 		Settings.getConfig().options().copyDefaults(true);
         saveConfig();
+        
+        
+        // Get Current Verbosity Values
+        debug.setVerbosity(Settings.getConfig().getInt("debug.verbosity"));
+        
 		
 		// Register Bukkit Listeners (For Event Handlers)
 		Bukkit.getPluginManager().registerEvents(this, this);
@@ -65,8 +54,8 @@ public class Main extends JavaPlugin implements Listener {
 	}
 
 	@EventHandler(priority = EventPriority.LOWEST, ignoreCancelled = false)
-	public void onChunkLoad(ChunkLoadEvent event) {
-		if(isVerboseEnough(Verbosity.superverbose)) {
+	public void onChunkLoad(ChunkLoadEvent event) {		
+		if(debug.isVerboseEnough(Verbosity.superverbose)) {
 			getLogger().info(ChatColor.BLUE + "<onChunkLoad> New Chunk: " + event.isNewChunk());
 			getLogger().info(ChatColor.BLUE + "<onChunkLoad> Asynchronous: " + event.isAsynchronous());
 			
@@ -76,7 +65,7 @@ public class Main extends JavaPlugin implements Listener {
 	
 	@EventHandler(priority = EventPriority.LOWEST, ignoreCancelled = false)
 	public void onChunkUnload(ChunkUnloadEvent event) {
-		if(isVerboseEnough(Verbosity.superverbose)) {
+		if(debug.isVerboseEnough(Verbosity.superverbose)) {
 			getLogger().info(ChatColor.GREEN + "<onChunkUnload> Is Saving Chunk: " + event.isSaveChunk());
 			getLogger().info(ChatColor.GREEN + "<onChunkUnload> Asynchronous: " + event.isAsynchronous());
 			

@@ -18,7 +18,6 @@ worlds:
 
 # Debug Options
 debug:
-  # Detect Nether is Currently Broken - Do Not Use
   detectNether: false
   lagme:
     loopAmount: 100
