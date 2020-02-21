@@ -31,7 +31,7 @@ public class Commands implements CommandExecutor {
 	/** Checks For Specific Command and Executes It
 	 * @param sender The sender's object (CommandSender)
 	 * @param command The command to run
-	 * @param label TODO: Fill In
+	 * @param label Alias of command run
 	 * @param args Array of arguments for the command
 	*/
 	public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
