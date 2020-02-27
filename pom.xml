@@ -48,10 +48,10 @@
 			<scope>provided</scope>
 		</dependency>
 		<dependency>
-		  <groupId>me.alexisevelyn</groupId>
-		  <artifactId>42</artifactId>
-		  <version>0.0.1-SNAPSHOT</version>
-		  <scope>compile</scope>
+			<groupId>me.alexisevelyn</groupId>
+			<artifactId>42</artifactId>
+			<version>0.0.2-SNAPSHOT</version>
+			<scope>compile</scope>
 		</dependency>
 	</dependencies>
 </project>
