@@ -51,18 +51,18 @@ public class Main extends JavaPlugin implements Listener {
 		this.getCommand("wild").setExecutor(new Commands());
 		this.getCommand("lagme").setExecutor(new Commands());
 		this.getCommand("loadedchunks").setExecutor(new Commands());
-		this.getCommand("reload").setExecutor(new Commands());
+		this.getCommand("reloadpaper").setExecutor(new Commands());
 
-		// TODO: -----------------------------------------------------------------------------
-		// bStats Enabling Code
-		int pluginId = 6697;
-		Metrics metrics = new Metrics(this, pluginId);
-
-		// Optional: Add custom charts
-		// metrics.addCustomChart(new Metrics.SimplePie("chart_id", () -> "My value"));
-
-		getLogger().info(ChatColor.GOLD  + "bStats Enabled: " + metrics.isEnabled());
-		// TODO: -----------------------------------------------------------------------------
+//		// TODO: -----------------------------------------------------------------------------
+//		// bStats Enabling Code
+//		int pluginId = 6697;
+//		Metrics metrics = new Metrics(this, pluginId);
+//
+//		// Optional: Add custom charts
+//		// metrics.addCustomChart(new Metrics.SimplePie("chart_id", () -> "My value"));
+//
+//		getLogger().info(ChatColor.GOLD  + "bStats Enabled: " + metrics.isEnabled());
+//		// TODO: -----------------------------------------------------------------------------
 
 		// Announce Successful Start
 		getLogger().info("Paper Wild has successfully started!!!");

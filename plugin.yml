@@ -29,9 +29,9 @@ commands:
       permission: paperwild.admin.command.loadedchunks
       default: false
       permission-message: You don't have the paperwild.admin.command.loadedchunks permission.
-    reload:
+    reloadpaper:
       description: Reload Config
-      usage: /reload
+      usage: /reloadpaper
       permission: paperwild.admin.command.reload
       default: false
       permission-message: You don't have the paperwild.admin.command.reload permission.
