@@ -1,6 +1,7 @@
 package me.alexisevelyn.paperwild;
 
 //Bukkit Imports
+import org.bstats.bukkit.Metrics;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.event.EventHandler;
@@ -51,6 +52,17 @@ public class Main extends JavaPlugin implements Listener {
 		this.getCommand("lagme").setExecutor(new Commands());
 		this.getCommand("loadedchunks").setExecutor(new Commands());
 		this.getCommand("reload").setExecutor(new Commands());
+
+		// TODO: -----------------------------------------------------------------------------
+		// bStats Enabling Code
+		int pluginId = 6697;
+		Metrics metrics = new Metrics(this, pluginId);
+
+		// Optional: Add custom charts
+		// metrics.addCustomChart(new Metrics.SimplePie("chart_id", () -> "My value"));
+
+		getLogger().info(ChatColor.GOLD  + "bStats Enabled: " + metrics.isEnabled());
+		// TODO: -----------------------------------------------------------------------------
 
 		// Announce Successful Start
 		getLogger().info("Paper Wild has successfully started!!!");

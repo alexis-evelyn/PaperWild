@@ -13,6 +13,7 @@
 	</properties>
 
 	<build>
+		<defaultGoal>clean package install</defaultGoal>
 		<resources>
 			<resource>
 				<directory>./</directory>
