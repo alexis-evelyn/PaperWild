@@ -54,6 +54,43 @@
 			</resource>
 		</resources>
 
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-shade-plugin</artifactId>
+				<version>3.2.1</version>
+				<executions>
+					<execution>
+						<phase>package</phase>
+						<goals>
+							<goal>shade</goal>
+						</goals>
+						<configuration>
+							<createDependencyReducedPom>false</createDependencyReducedPom>
+							<artifactSet>
+								<includes>
+									<include>me.lucko:commodore</include>
+									<include>org.bstats:bstats-bukkit</include>
+								</includes>
+							</artifactSet>
+							<relocations>
+								<relocation>
+									<pattern>org.bstats</pattern>
+									<!-- Replace this with your package! -->
+									<shadedPattern>me.alexisevelyn.fourtytwo.shaded.bstats</shadedPattern>
+								</relocation>
+								<relocation>
+									<pattern>me.lucko.commodore</pattern>
+									<!-- vvv Replace with the package of your plugin vvv -->
+									<shadedPattern>me.alexisevelyn.fourtytwo.shaded.commodore</shadedPattern>
+								</relocation>
+							</relocations>
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>
+		</plugins>
+
 		<extensions>
 			<extension>
 				<groupId>io.packagecloud.maven.wagon</groupId>
@@ -78,6 +115,10 @@
 				<enabled>true</enabled>
 			</snapshots>
 		</repository>
+		<repository>
+			<id>CodeMC</id>
+			<url>https://repo.codemc.org/repository/maven-public</url>
+		</repository>
 	</repositories>
 
 	<dependencies>
@@ -91,6 +132,18 @@
 			<groupId>me.alexisevelyn</groupId>
 			<artifactId>42</artifactId>
 			<version>0.0.2-SNAPSHOT</version>
+		</dependency>
+		<dependency>
+			<groupId>me.lucko</groupId>
+			<artifactId>commodore</artifactId>
+			<version>1.5</version>
+			<scope>compile</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.bstats</groupId>
+			<artifactId>bstats-bukkit</artifactId>
+			<version>1.7</version>
+			<scope>compile</scope>
 		</dependency>
 	</dependencies>
 
